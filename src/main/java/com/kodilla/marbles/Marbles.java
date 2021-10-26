@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class Marbles extends Application {
     private Image imageback = new Image("file:src/main/resources/sandBackground.jpg");
-    private Image ball1 = new Image("file:resources/cards/marbleBall.png");
+    private Image ball1 = new Image("file:src/main/resources/chipBlackWhite_border.png");
     private FlowPane balls = new FlowPane(Orientation.HORIZONTAL);
 
     public static void main(String[] args) {
@@ -30,20 +30,21 @@ public class Marbles extends Application {
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
-        grid.setPadding(new Insets(11.5, 12.5, 13.5, 14.5));
+        grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setHgap(5.5);
         grid.setVgap(5.5);
         grid.setBackground(background);
         ImageView img = new ImageView(ball1);
         balls.getChildren().add(img);
 
-        grid.add(balls, 0, 0, 3, 1);
+        grid.add(balls, 1, 1, 1, 1);
 
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
 
         primaryStage.setTitle("BlackJack");
         primaryStage.setScene(scene);
         primaryStage.show();
+
 
     }
 }

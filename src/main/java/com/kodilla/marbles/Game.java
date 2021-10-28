@@ -32,8 +32,12 @@ public class Game {
         Button nextRound = new Button("next round");
         grid.add(nextRound, 10, 10, 1, 1);
                 nextRound.setOnAction((e) -> {
-                    roundUI.removeBallsViewComputer(grid);  //pomysł 1
-                    grid.getChildren().remove(roundUI.removeBallsViewUser()); //pomysł 2
+                    roundUI.getBallsViewUser().getChildren().removeAll();
+                    roundUI.getBallsViewComputer().getChildren().removeAll();
+
+                    grid.getChildren().remove(roundUI.getBallsViewUser());
+                    grid.getChildren().remove(roundUI.getBallsViewComputer());
+
                     //round.playRound(roundUI, roundLogic, grid);  //ten fragment powoduje zbyt
                 });                                              // dużą ilość kulek
         return scene;

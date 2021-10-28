@@ -31,12 +31,12 @@ public class RoundUI {
         grid.add(ballsViewUser, 0, 40, 10, 1);
     }
 
-    public void removeBallsViewComputer (GridPane grid) {
-        grid.getChildren().remove(ballsViewComputer);  //pomysł 1
+    public FlowPane getBallsViewComputer() {
+        return ballsViewComputer;
     }
 
-    public FlowPane removeBallsViewUser() {
-        return ballsViewUser; //pomysł2
+    public FlowPane getBallsViewUser() {
+        return ballsViewUser;
     }
 
     public void showChoiceBox(GridPane grid){

@@ -20,6 +20,8 @@ public class StartScreen {
 
     private Image startButtonBack = new Image("file:src/main/resources/UI/yellow_panel.png");
     public void mainMenu(Button start, GridPane grid, Text text){
+
+
         ImageView buttonStart = new ImageView(startButtonBack);
 
         start.setTranslateX(200);

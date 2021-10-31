@@ -29,20 +29,10 @@ public class Game {
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
 
 
-
-        //round.playRound(roundUI, roundLogic, grid);
-        roundUI.showBalls(grid, roundLogic);
+        round.firstRound(roundUI, roundLogic, grid);
         Button nextRound = new Button("next round");
         grid.add(nextRound, 10, 10, 1, 1);
-                nextRound.setOnAction((e) -> {
-                    roundUI.getBallsViewUser().getChildren().clear();
-                    roundUI.getBallsViewComputer().getChildren().clear();
-
-                    grid.getChildren().remove(roundUI.getBallsViewUser());
-                    grid.getChildren().remove(roundUI.getBallsViewComputer());
-
-                    round.playRound(roundUI, roundLogic, grid);
-                });
+                nextRound.setOnAction((e) -> round.playRound(roundUI, roundLogic, grid));
 
         return scene;
     }

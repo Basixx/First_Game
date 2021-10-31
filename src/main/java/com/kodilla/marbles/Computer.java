@@ -18,8 +18,6 @@ public class Computer {
         return guess;
     }
 
-
-
     public int getBallsCount() {
         return ballsCount;
     }

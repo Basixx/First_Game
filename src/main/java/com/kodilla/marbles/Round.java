@@ -1,19 +1,24 @@
 package com.kodilla.marbles;
 
-import javafx.scene.Scene;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
 public class Round {
-    private RoundUI roundUI = new RoundUI();
-    private RoundLogic roundLogic = new RoundLogic();
-    private User user = new User();
-    private Computer computer = new Computer();
     public void playRound (RoundUI roundUI, RoundLogic roundLogic, GridPane grid){
 
-            roundLogic.singleTurn();
-            roundUI.showBalls(grid, roundLogic);
-            //roundUI.showChoiceBox(grid, roundLogic);
+        roundUI.getBallsViewUser().getChildren().clear();
+        roundUI.getBallsViewComputer().getChildren().clear();
 
+        grid.getChildren().remove(roundUI.getBallsViewUser());
+        grid.getChildren().remove(roundUI.getBallsViewComputer());
+        grid.getChildren().remove(roundLogic.choice.chooseBallsQuantityBox(roundLogic.user));
+
+        roundLogic.singleTurn();
+        roundUI.showBalls(grid, roundLogic);
+        roundUI.showChoiceBox(grid, roundLogic, roundLogic.user);
+   }
+
+   public void firstRound (RoundUI roundUI, RoundLogic roundLogic, GridPane grid){
+       roundUI.showBalls(grid, roundLogic);
+       roundUI.showChoiceBox(grid, roundLogic, roundLogic.user);
    }
 }

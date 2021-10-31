@@ -12,9 +12,13 @@ public class RoundUI {
     private Image redChip = new Image("file:src/main/resources/chips/chipRedWhite_border.png");
     private Image blueChip = new Image("file:src/main/resources/chips/chipBlueWhite_border.png");
     private Image greenChip = new Image("file:src/main/resources/chips/chipGreenWhite_border.png");
-
     private FlowPane ballsViewComputer = new FlowPane(Orientation.HORIZONTAL);
     private FlowPane ballsViewUser = new FlowPane(Orientation.HORIZONTAL);
+
+    public void showChoiceBox(GridPane grid, RoundLogic roundLogic, User user){
+        grid.add(roundLogic.choice.chooseBallsQuantityBox(user), 4, 4);
+    }
+
     public void showBalls(GridPane grid, RoundLogic roundLogic){
 
         for (int i =0; i<roundLogic.getUserBalls(); i++){
@@ -38,7 +42,5 @@ public class RoundUI {
         return ballsViewUser;
     }
 
-    public void showChoiceBox(GridPane grid, RoundLogic roundLogic){
-        grid.add(roundLogic.user.chooseBallsQuantity1(), 4, 4);
-    }
+
 }

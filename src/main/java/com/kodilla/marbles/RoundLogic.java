@@ -4,18 +4,18 @@ public class RoundLogic {
 
     User user = new User();
     Computer computer = new Computer();
-    private int userBalls = user.getBallsCount();
-    private int computerBalls = computer.getBallsCount();
+    public int userBalls = user.getBallsCount();
+    public int computerBalls= computer.getBallsCount();
 
     public void singleTurn(){
-        System.out.println("user" +userBalls);
-        System.out.println("comp" +computerBalls);
+        System.out.println("user " +userBalls);
+        System.out.println("comp " +computerBalls);
 
         int userBallsBet = user.chooseBallsQuantity();
         int computerBallsBet = computer.chooseBallsQuantity();
 
-        System.out.println("user bet" + userBallsBet);
-        System.out.println("comp bet" +  computerBallsBet);
+        System.out.println("user bet " + userBallsBet);
+        System.out.println("comp bet " +  computerBallsBet);
 
         if (computer.ifGuessed()) {
             computerBalls += userBallsBet;
@@ -26,8 +26,8 @@ public class RoundLogic {
             computerBalls -= computerBallsBet;
         }
 
-        System.out.println("user" + userBalls);
-        System.out.println("comp" + computerBalls);
+        System.out.println("user " + userBalls);
+        System.out.println("comp " + computerBalls);
     }
 
     public int getUserBalls() {

@@ -13,7 +13,7 @@ public class Marbles extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Game game = new Game();
-        Scene scene = game.show();
+        Scene scene = game.showGame();
 
         primaryStage.setTitle("BlackJack");
         primaryStage.setScene(scene);

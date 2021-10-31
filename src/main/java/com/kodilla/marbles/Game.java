@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 public class Game {
     private Image imageback = new Image("file:src/main/resources/background.png");
 
-    public Scene show(){
+    public Scene showGame(){
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage backgroundImage = new BackgroundImage(imageback, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
@@ -28,18 +28,22 @@ public class Game {
         RoundLogic roundLogic = new RoundLogic();
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
 
-        round.playRound(roundUI, roundLogic, grid);
+
+
+        //round.playRound(roundUI, roundLogic, grid);
+        roundUI.showBalls(grid, roundLogic);
         Button nextRound = new Button("next round");
         grid.add(nextRound, 10, 10, 1, 1);
                 nextRound.setOnAction((e) -> {
-                    roundUI.getBallsViewUser().getChildren().removeAll();
-                    roundUI.getBallsViewComputer().getChildren().removeAll();
+                    roundUI.getBallsViewUser().getChildren().clear();
+                    roundUI.getBallsViewComputer().getChildren().clear();
 
                     grid.getChildren().remove(roundUI.getBallsViewUser());
                     grid.getChildren().remove(roundUI.getBallsViewComputer());
 
-                    //round.playRound(roundUI, roundLogic, grid);  //ten fragment powoduje zbyt
-                });                                              // dużą ilość kulek
+                    round.playRound(roundUI, roundLogic, grid);
+                });
+
         return scene;
     }
 }

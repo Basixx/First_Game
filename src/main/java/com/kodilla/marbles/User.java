@@ -4,7 +4,7 @@ import javafx.scene.control.ChoiceBox;
 
 public class User {
     private String name;
-    private int ballsCount = 7;
+    private int ballsCount = 10;
 
     public ChoiceBox chooseBallsQuantity1(){
 

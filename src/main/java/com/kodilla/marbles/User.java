@@ -15,4 +15,8 @@ public class User {
     public int getBallsCount() {
         return ballsCount;
     }
+
+    public boolean ifGuessed(){
+        return false;
+    }
 }

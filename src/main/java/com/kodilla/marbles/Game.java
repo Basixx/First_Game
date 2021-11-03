@@ -31,6 +31,9 @@ public class Game {
 
         round.firstRound(roundUI, roundLogic, grid);
         Button nextRound = new Button("next round");
+
+
+
         grid.add(nextRound, 10, 10, 1, 1);
                 nextRound.setOnAction((e) -> round.playRound(roundUI, roundLogic, grid));
 

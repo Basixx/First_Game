@@ -1,8 +1,5 @@
 package com.kodilla.marbles;
 
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Tooltip;
-
 public class RoundLogic {
 
     User user = new User();
@@ -11,28 +8,52 @@ public class RoundLogic {
     public int computerBalls= computer.getBallsCount();
     public int userBalls = user.getBallsCount();
 
-    public void singleTurn(){
+    public void computerBetTurn(){
 
-        System.out.println("user " +userBalls);
-        System.out.println("comp " +computerBalls);
+        System.out.println("user " + userBalls);
+        System.out.println("comp " + computerBalls);
 
-        int userBallsBet = 3;// choice.choiceCount(user);
+        int userBallsBet = choice.getBallsChoiceBox().getValue();
         int computerBallsBet = computer.chooseBallsQuantity();
-        System.out.println("czemu ciągle null " + choice.chooseBallsQuantityBox(user).getValue());
+        System.out.println("czemu ciągle null " + choice.getBallsChoiceBox().getValue());
         System.out.println("user bet " + userBallsBet);
         System.out.println("comp bet " +  computerBallsBet);
 
         if (computer.ifGuessed()) {
-            computerBalls += userBallsBet;
-            userBalls -= userBallsBet;
+            computerBalls += computerBallsBet;
+            userBalls -= computerBallsBet;
         }
         else {
-            userBalls += computerBallsBet;
-            computerBalls -= computerBallsBet;
+            userBalls += userBallsBet;
+            computerBalls -= userBallsBet;
         }
 
         System.out.println("user " + userBalls);
         System.out.println("comp " + computerBalls);
+    }
+
+    public void userBetTurn(){
+        System.out.println("user " +userBalls);
+        System.out.println("comp " +computerBalls);
+
+        int userBallsBet = choice.getBallsChoiceBox().getValue();
+        int computerBallsBet = computer.chooseBallsQuantity();
+        System.out.println("czemu ciągle null " + choice.getBallsChoiceBox().getValue());
+        System.out.println("user bet " + userBallsBet);
+        System.out.println("comp bet " +  computerBallsBet);
+
+        if (user.ifGuessed()) {
+            userBalls += userBallsBet;
+            computerBalls -= userBallsBet;
+        }
+        else {
+            computerBalls += computerBallsBet;
+            userBalls -= computerBallsBet;
+        }
+
+        System.out.println("user " + userBalls);
+        System.out.println("comp " + computerBalls);
+
     }
 
 

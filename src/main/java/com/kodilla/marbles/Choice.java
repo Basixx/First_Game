@@ -4,16 +4,20 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tooltip;
 
 public class Choice {
-    public ChoiceBox<Integer> chooseBallsQuantityBox(User user){
-        ChoiceBox <Integer> ballsChoiceBox = new ChoiceBox <>();
+    private ChoiceBox <Integer> ballsChoiceBox = new ChoiceBox <>();
+
+    public void adjustChoiceBox(User user){
+
+        ballsChoiceBox.getItems().clear();
 
         for (int i=1; i<= user.getBallsCount(); i++){
             ballsChoiceBox.getItems().add(i);
         }
 
         ballsChoiceBox.setTooltip(new Tooltip("Choose balls count to bet"));
-
-        return ballsChoiceBox;
     }
 
+    public ChoiceBox<Integer> getBallsChoiceBox() {
+        return ballsChoiceBox;
+    }
 }

@@ -1,5 +1,6 @@
 package com.kodilla.marbles;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tooltip;
 
@@ -16,7 +17,13 @@ public class User {
         return ballsCount;
     }
 
-    public boolean ifGuessed(){
-        return false;
+    public boolean ifGuessed(boolean isGuessIfEven, boolean isComputerBallsEven){
+       if (isComputerBallsEven == isGuessIfEven){
+           return true;
+       }
+        else {
+            return false;
+       }
+
     }
 }

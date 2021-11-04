@@ -21,4 +21,13 @@ public class Computer {
     public int getBallsCount() {
         return ballsCount;
     }
+
+    public boolean ifComputerBallsEven() {
+        if (chooseBallsQuantity()%2==0){
+            return true;
+        }
+        else {
+            return  false;
+        }
+    }
 }

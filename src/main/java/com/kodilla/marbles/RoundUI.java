@@ -21,13 +21,13 @@ public class RoundUI {
         grid.add(roundLogic.choice.getBallsChoiceBox(), 4, 4);
     }
 
-    public void showBalls(GridPane grid, RoundLogic roundLogic){
+    public void showBalls(GridPane grid, Integer userBalls, Integer computerBalls){
 
-        for (int i =0; i<roundLogic.getUserBalls(); i++){
+        for (int i =0; i<userBalls; i++){
             ImageView chip = new ImageView(blackChip);
             ballsViewComputer.getChildren().add(chip);
         }
-        for (int i =0; i<roundLogic.getComputerBalls(); i++){
+        for (int i =0; i<computerBalls; i++){
             ImageView chip = new ImageView(redChip);
             ballsViewUser.getChildren().add(chip);
         }

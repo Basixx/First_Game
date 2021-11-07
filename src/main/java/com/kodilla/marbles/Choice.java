@@ -6,11 +6,11 @@ import javafx.scene.control.Tooltip;
 public class Choice {
     private ChoiceBox <Integer> ballsChoiceBox = new ChoiceBox <>();
 
-    public void adjustChoiceBox(User user){
+    public void adjustChoiceBox(int ballsCount){
 
         ballsChoiceBox.getItems().clear();
 
-        for (int i=1; i<= user.getBallsCount(); i++){
+        for (int i=1; i<= ballsCount; i++){
             ballsChoiceBox.getItems().add(i);
         }
 

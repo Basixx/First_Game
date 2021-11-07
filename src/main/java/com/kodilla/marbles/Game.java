@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 
 public class Game {
     private Image imageback = new Image("file:src/main/resources/background.png");
-
+    private int i=0;
     public Scene showGame(){
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage backgroundImage = new BackgroundImage(imageback, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
@@ -28,14 +28,17 @@ public class Game {
         RoundLogic roundLogic = new RoundLogic();
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
 
+        round.setBalls();
 
         round.firstRound(roundUI, roundLogic, grid);
         Button nextRound = new Button("next round");
 
 
-
         grid.add(nextRound, 10, 10, 1, 1);
-                nextRound.setOnAction((e) -> round.playRound(roundUI, roundLogic, grid));
+                nextRound.setOnAction((e) -> {
+                    round.playRound(roundUI, roundLogic, grid, i);
+                    i++;
+                });
 
         return scene;
     }

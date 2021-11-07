@@ -7,10 +7,17 @@ public class Round {
     User user = new User();
     Computer computer = new Computer();
     ChoiceButtons choiceButtons = new ChoiceButtons();
-    private int userBalls = user.getBallsCount();
-    private int computerBalls = computer.getBallsCount();
+    BallsCount ballsCount = new BallsCount();
+    //private int userBalls = user.getBallsCount();
+   // private int computerBalls = computer.getBallsCount();
 
-    public void playRound (RoundUI roundUI, RoundLogic roundLogic, GridPane grid){
+    public void setBalls(){
+        ballsCount.userBalls = user.getBallsCount();
+        ballsCount.computerBalls = computer.getBallsCount();
+    }
+
+
+    public void playRound (RoundUI roundUI, RoundLogic roundLogic, GridPane grid, int i){
 
         roundUI.getBallsViewUser().getChildren().clear();
         roundUI.getBallsViewComputer().getChildren().clear();
@@ -20,20 +27,26 @@ public class Round {
         grid.getChildren().remove(roundLogic.choice.getBallsChoiceBox());
         grid.getChildren().remove(choiceButtons.getEvenButton());
         grid.getChildren().remove(choiceButtons.getOddButton());
-        roundLogic.computerBetTurn(userBalls, computerBalls,
-                computer.chooseBallsQuantity(), computer.ifGuessed());
 
-        /*roundLogic.userBetTurn(userBalls, computerBalls,
-                 computer.chooseBallsQuantity(),
-                user.ifGuessed(choiceButtons.isGuessIfEven(), computer.ifComputerBallsEven()));*/
-        roundUI.showBalls(grid, userBalls, computerBalls);
-        roundUI.showChoiceBox(grid, roundLogic, user);
-        roundUI.showChoiceButtons(grid, choiceButtons);
+
+        if (i%2==1) {
+            roundLogic.computerBetTurn(ballsCount.userBalls, ballsCount.computerBalls,
+                    computer.chooseBallsQuantity(), computer.ifGuessed(), ballsCount);
+        }
+        else {
+            roundUI.showChoiceButtons(grid, choiceButtons);
+            roundLogic.userBetTurn(ballsCount.userBalls, ballsCount.computerBalls,
+                    computer.chooseBallsQuantity(),
+                    user.ifGuessed(choiceButtons.isGuessIfEven(), computer.ifComputerBallsEven()), ballsCount);
+
+        }
+        roundUI.showBalls(grid, ballsCount.userBalls, ballsCount.computerBalls);
+        roundUI.showChoiceBox(grid, roundLogic, user.getBallsCount());
    }
 
    public void firstRound (RoundUI roundUI, RoundLogic roundLogic, GridPane grid){
-       roundUI.showBalls(grid, userBalls, computerBalls);
-       roundUI.showChoiceBox(grid, roundLogic, user);
+       roundUI.showBalls(grid, ballsCount.userBalls, ballsCount.computerBalls);
+       roundUI.showChoiceBox(grid, roundLogic, user.getBallsCount());
    }
 }
 

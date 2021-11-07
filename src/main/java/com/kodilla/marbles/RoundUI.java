@@ -1,7 +1,6 @@
 package com.kodilla.marbles;
 
 import javafx.geometry.Orientation;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -16,8 +15,8 @@ public class RoundUI {
     private FlowPane ballsViewComputer = new FlowPane(Orientation.HORIZONTAL);
     private FlowPane ballsViewUser = new FlowPane(Orientation.HORIZONTAL);
 
-    public void showChoiceBox(GridPane grid, RoundLogic roundLogic, User user){
-        roundLogic.choice.adjustChoiceBox(user);
+    public void showChoiceBox(GridPane grid, RoundLogic roundLogic, int ballsCount){
+        roundLogic.choice.adjustChoiceBox(ballsCount);
         grid.add(roundLogic.choice.getBallsChoiceBox(), 4, 4);
     }
 

@@ -5,9 +5,9 @@ public class RoundLogic {
     Choice choice = new Choice();
 
 
-    public void computerBetTurn(Integer userBalls, Integer computerBalls,
-                                Integer computerBet, boolean ifCompGuessed){
-
+    public BallsCount computerBetTurn(Integer userBalls, Integer computerBalls,
+                                Integer computerBet, boolean ifCompGuessed, BallsCount ballsCount){
+        System.out.println("computerBetTurn");
         System.out.println("user " + userBalls);
         System.out.println("comp " + computerBalls);
 
@@ -28,10 +28,16 @@ public class RoundLogic {
 
         System.out.println("user " + userBalls);
         System.out.println("comp " + computerBalls);
+
+        ballsCount.computerBalls=computerBalls;
+        ballsCount.userBalls=userBalls;
+
+        return  ballsCount;
     }
 
-    public void userBetTurn(Integer userBalls, Integer computerBalls,
-                            Integer computerBet, boolean ifUserGuessed){
+    public BallsCount userBetTurn(Integer userBalls, Integer computerBalls,
+                            Integer computerBet, boolean ifUserGuessed, BallsCount ballsCount){
+        System.out.println("userBetTurn");
         System.out.println("user " +userBalls);
         System.out.println("comp " +computerBalls);
 
@@ -53,9 +59,10 @@ public class RoundLogic {
         System.out.println("user " + userBalls);
         System.out.println("comp " + computerBalls);
 
+        ballsCount.computerBalls=computerBalls;
+        ballsCount.userBalls=userBalls;
+
+        return  ballsCount;
     }
-
-
-
 
 }

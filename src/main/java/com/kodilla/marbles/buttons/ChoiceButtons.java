@@ -1,4 +1,4 @@
-package com.kodilla.marbles;
+package com.kodilla.marbles.buttons;
 
 
 import javafx.event.EventHandler;
@@ -19,7 +19,7 @@ public class ChoiceButtons {
     private ImageView buttonEvenImageView = new ImageView(evenButtonImage);
     private boolean guessIfEven;
 
-    public void setButton(Button button, ImageView imageView){
+    private void setButton(Button button, ImageView imageView){
         button.setTranslateX(200);
         button.setTranslateY(25);
         button.setGraphic(imageView);

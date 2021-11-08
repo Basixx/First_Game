@@ -1,5 +1,6 @@
 package com.kodilla.marbles;
 
+import com.kodilla.marbles.buttons.ChoiceButtons;
 import javafx.geometry.Orientation;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

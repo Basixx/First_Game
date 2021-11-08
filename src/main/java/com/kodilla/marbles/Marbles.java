@@ -12,9 +12,11 @@ public class Marbles extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Game game = new Game();
-        Scene scene = game.showGame();
 
+
+        Game game = new Game();
+
+        Scene scene = game.showMainMenu();
         primaryStage.setTitle("BlackJack");
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -1,5 +1,6 @@
 package com.kodilla.marbles;
 
+import com.kodilla.marbles.buttons.ChoiceButtons;
 import javafx.scene.layout.GridPane;
 
 public class Round {
@@ -29,19 +30,23 @@ public class Round {
         grid.getChildren().remove(choiceButtons.getOddButton());
 
 
-        if (i%2==1) {
-            roundLogic.computerBetTurn(ballsCount.userBalls, ballsCount.computerBalls,
-                    computer.chooseBallsQuantity(), computer.ifGuessed(), ballsCount);
-        }
-        else {
-            roundUI.showChoiceButtons(grid, choiceButtons);
-            roundLogic.userBetTurn(ballsCount.userBalls, ballsCount.computerBalls,
-                    computer.chooseBallsQuantity(),
-                    user.ifGuessed(choiceButtons.isGuessIfEven(), computer.ifComputerBallsEven()), ballsCount);
+            if (i % 2 == 1) {
+                roundLogic.computerBetTurn(ballsCount.userBalls, ballsCount.computerBalls,
+                        computer.chooseBallsQuantity(), computer.ifGuessed(), ballsCount);
+            } else {
+                roundUI.showChoiceButtons(grid, choiceButtons);
+                roundLogic.userBetTurn(ballsCount.userBalls, ballsCount.computerBalls,
+                        computer.chooseBallsQuantity(),
+                        user.ifGuessed(choiceButtons.isGuessIfEven(), computer.ifComputerBallsEven()), ballsCount);
 
-        }
-        roundUI.showBalls(grid, ballsCount.userBalls, ballsCount.computerBalls);
-        roundUI.showChoiceBox(grid, roundLogic, user.getBallsCount());
+            }
+            roundUI.showBalls(grid, ballsCount.userBalls, ballsCount.computerBalls);
+            roundUI.showChoiceBox(grid, roundLogic, user.getBallsCount());
+
+       if(ballsCount.userBalls<=0 || ballsCount.computerBalls<=0) {
+        System.out.println("koniec");
+
+       }
    }
 
    public void firstRound (RoundUI roundUI, RoundLogic roundLogic, GridPane grid){

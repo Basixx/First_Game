@@ -1,5 +1,6 @@
 package com.kodilla.marbles;
 
+import com.kodilla.marbles.game.Game;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,11 +14,9 @@ public class Marbles extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
         Game game = new Game();
-
-        Scene scene = game.showMainMenu();
-        primaryStage.setTitle("BlackJack");
+        Scene scene = game.showMainMenu(primaryStage);
+        primaryStage.setTitle("Marbles");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

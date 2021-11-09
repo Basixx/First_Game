@@ -1,6 +1,5 @@
 package com.kodilla.marbles.buttons;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -9,17 +8,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class BallsNumbersButtons {
-    private Image bluePanel10 = new Image  ("file:src/main/resources/UI/blue_panel_10.png");
-    private Image bluePanel15 = new Image  ("file:src/main/resources/UI/blue_panel_15.png");
-    private Image bluePanel20 = new Image  ("file:src/main/resources/UI/blue_panel_20.png");
+    private final Image bluePanel10 = new Image  ("file:src/main/resources/UI/blue_panel_10.png");
+    private final Image bluePanel15 = new Image  ("file:src/main/resources/UI/blue_panel_15.png");
+    private final Image bluePanel20 = new Image  ("file:src/main/resources/UI/blue_panel_20.png");
 
-    private ImageView panel10 = new ImageView(bluePanel10);
-    private ImageView panel15 = new ImageView(bluePanel15);
-    private ImageView panel20 = new ImageView(bluePanel20);
+    private final ImageView panel10 = new ImageView(bluePanel10);
+    private final ImageView panel15 = new ImageView(bluePanel15);
+    private final ImageView panel20 = new ImageView(bluePanel20);
 
-    private Button button10 = new Button();
-    private Button button15 = new Button();
-    private Button button20 = new Button();
+    private final Button button10 = new Button();
+    private final Button button15 = new Button();
+    private final Button button20 = new Button();
 
     private int howManyStart;
 
@@ -28,10 +27,8 @@ public class BallsNumbersButtons {
         button.setTranslateY(25);
         button.setGraphic(imageView);
         button.setPadding(Insets.EMPTY);
-        button.addEventHandler(MouseEvent.MOUSE_ENTERED, (EventHandler<MouseEvent>)
-                e -> button.setEffect(new DropShadow()));
-        button.addEventHandler(MouseEvent.MOUSE_EXITED, (EventHandler<MouseEvent>)
-                e -> button.setEffect(null));
+        button.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> button.setEffect(new DropShadow()));
+        button.addEventHandler(MouseEvent.MOUSE_EXITED, e -> button.setEffect(null));
     }
 
     public void setAllButtons(){

@@ -1,4 +1,4 @@
-package com.kodilla.marbles;
+package com.kodilla.marbles.texts;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -25,5 +25,28 @@ public class GameTexts {
         initialSetup.setFont(Font.font("arial",
                 FontWeight.BOLD, FontPosture.ITALIC, 30));
         return initialSetup;
+    }
+
+    public Text setEndText(){
+        Text endText = new Text();
+        endText.setText("Game Over");
+        endText.setFont(Font.font("arial",
+                FontWeight.BOLD, FontPosture.ITALIC, 30));
+        return endText;
+    }
+    public Text setUserWonText(){
+        Text userWon = new Text();
+        userWon.setText("YOU WON!");
+        userWon.setFont(Font.font("arial",
+                FontWeight.BOLD, FontPosture.ITALIC, 30));
+        return userWon;
+    }
+
+    public Text setComputerWonText(){
+        Text computerWon = new Text();
+        computerWon.setText("You lost :(");
+        computerWon.setFont(Font.font("arial",
+                FontWeight.BOLD, FontPosture.ITALIC, 30));
+        return computerWon;
     }
 }

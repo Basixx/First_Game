@@ -23,6 +23,8 @@ public class Game {
     private final Round round = new Round();
     private final BallsColorsButtons ballsColorsButtons = new BallsColorsButtons();
     private final BallsNumbersButtons ballsNumbersButtons = new BallsNumbersButtons();
+    private RoundUI roundUI = new RoundUI();
+    private RoundLogic roundLogic = new RoundLogic();
 
     private GridPane setBackGround() {
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
@@ -48,7 +50,7 @@ public class Game {
         Text mainMenu = gameTexts.setMainMenuText();
         grid.add(mainMenu, 0, 0);
 
-        Text initialChoice = gameTexts.setInititialChoiceText();
+        Text initialChoice = gameTexts.setText("Choose balls count and color");
         grid.add(initialChoice, 0, 5);
 
         ballsNumbersButtons.setAllButtons();
@@ -86,13 +88,13 @@ public class Game {
         GridPane grid = setBackGround();
 
         int ballsColor = ballsColorsButtons.getChoiceNumber();
-        RoundUI roundUI = new RoundUI();
-        RoundLogic roundLogic = new RoundLogic();
+
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
-        balls = ballsNumbersButtons.getHowManyStart();//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        balls = ballsNumbersButtons.getHowManyStart();
         round.setBalls(balls);
         System.out.println("2ile kulek: " + balls);
         round.firstRound(roundUI, roundLogic, grid, ballsColor);
+       // primaryStage.setScene(firstRound(roundUI, roundLogic, ballsColor));
 
         CheckButton checkButton = new CheckButton();
         Button check = checkButton.setCheckButton();
@@ -100,6 +102,7 @@ public class Game {
         grid.add(check, 10, 10, 1, 1);
         check.setOnAction((e) -> {
             round.playRound(roundUI, roundLogic, grid, i, ballsColor);
+           // primaryStage.setScene(showRound());
             i++;
 
             if (round.ballsCount.userBalls <=0 || round.ballsCount.computerBalls <= 0) {
@@ -114,17 +117,34 @@ public class Game {
         GridPane grid = setBackGround();
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
         GameTexts gameTexts = new GameTexts();
-        Text gameOver = gameTexts.setEndText();
+        Text gameOver = gameTexts.setText("Game Over");
         grid.add(gameOver,0,0);
 
         if (userBalls <= 0 && computerBalls >0) {
-            Text youLost = gameTexts.setComputerWonText();
+            Text youLost = gameTexts.setText("Computer won :(");
             grid.add(youLost, 0, 2);
         }
         else{
-            Text youWon = gameTexts.setUserWonText();
+            Text youWon = gameTexts.setText("YOU WON!!!");
             grid.add(youWon, 0, 2);
         }
         return scene;
     }
+
+   /* public Scene firstRound(RoundUI roundUI, RoundLogic roundLogic, int ballsColor) {
+        GridPane gridFirstRound = setBackGround();
+        Scene firstRound = roundUI.setFirstRoundScene(gridFirstRound, roundLogic, round.ballsCount.userBalls,
+                round.ballsCount.computerBalls, ballsColor, round.computer.getComputerBallsColor());
+        return firstRound;
+    }*/
+/*
+    public Scene showRound(){
+        GridPane grid = setBackGround();
+        Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
+        roundUI.showIU(grid, roundLogic, round.ballsCount.userBalls, round.ballsCount.computerBalls,
+                ballsColorsButtons.getChoiceNumber(), ballsColorsButtons.
+        );
+
+        return scene;
+    }*/
 }

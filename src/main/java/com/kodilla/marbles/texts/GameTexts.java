@@ -19,34 +19,12 @@ public class GameTexts {
         return mainMenuText;
     }
 
-    public Text setInititialChoiceText(){
-        Text initialSetup = new Text();
-        initialSetup.setText("Choose balls count and color");
-        initialSetup.setFont(Font.font("arial",
+    public Text setText(String textString){
+        Text text = new Text();
+        text.setText(textString);
+        text.setFont(Font.font("arial",
                 FontWeight.BOLD, FontPosture.ITALIC, 30));
-        return initialSetup;
+        return text;
     }
 
-    public Text setEndText(){
-        Text endText = new Text();
-        endText.setText("Game Over");
-        endText.setFont(Font.font("arial",
-                FontWeight.BOLD, FontPosture.ITALIC, 30));
-        return endText;
-    }
-    public Text setUserWonText(){
-        Text userWon = new Text();
-        userWon.setText("YOU WON!");
-        userWon.setFont(Font.font("arial",
-                FontWeight.BOLD, FontPosture.ITALIC, 30));
-        return userWon;
-    }
-
-    public Text setComputerWonText(){
-        Text computerWon = new Text();
-        computerWon.setText("You lost :(");
-        computerWon.setFont(Font.font("arial",
-                FontWeight.BOLD, FontPosture.ITALIC, 30));
-        return computerWon;
-    }
 }

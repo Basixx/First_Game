@@ -4,7 +4,9 @@ import com.kodilla.marbles.auxiliary.BallsCount;
 import com.kodilla.marbles.buttons.ChoiceButtons;
 import com.kodilla.marbles.players.Computer;
 import com.kodilla.marbles.players.User;
+import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class Round {
 
@@ -30,24 +32,28 @@ public class Round {
         grid.getChildren().remove(choiceButtons.getOddButton());
 
         if (i % 2 == 1) {
-            roundLogic.computerBetTurn(ballsCount.userBalls, ballsCount.computerBalls,
+            roundLogic.computerGuessTurn(ballsCount.userBalls, ballsCount.computerBalls,
                     computer.chooseBallsQuantity(ballsCount.computerBalls), computer.ifGuessed(), ballsCount);
         } else {
             roundUI.showChoiceButtons(grid, choiceButtons);
-            roundLogic.userBetTurn(ballsCount.userBalls, ballsCount.computerBalls,
+            roundLogic.userGuessTurn(ballsCount.userBalls, ballsCount.computerBalls,
                     computer.chooseBallsQuantity(ballsCount.computerBalls),
                     user.ifGuessed(choiceButtons.isGuessIfEven(), computer.ifComputerBallsEven(ballsCount.computerBalls)), ballsCount);
         }
-        roundUI.showBalls(grid, ballsCount.userBalls, ballsCount.computerBalls, ballsColor, computer.getComputerBallsColor());
-        roundUI.showChoiceBox(grid, roundLogic, ballsCount.userBalls);
+
+        roundUI.showIU(grid, roundLogic, ballsCount.userBalls,
+                ballsCount.computerBalls, ballsColor, computer.getComputerBallsColor());
 
         if (ballsCount.userBalls <= 0 || ballsCount.computerBalls <= 0) {
             System.out.println("koniec");
         }
     }
 
+
+
     public void firstRound(RoundUI roundUI, RoundLogic roundLogic, GridPane grid, int ballsColor) {
-        roundUI.showBalls(grid, ballsCount.userBalls, ballsCount.computerBalls, ballsColor, computer.getComputerBallsColor());
-        roundUI.showChoiceBox(grid, roundLogic, ballsCount.userBalls);
+        roundUI.showIU(grid, roundLogic, ballsCount.userBalls,
+                ballsCount.computerBalls, ballsColor, computer.getComputerBallsColor());
     }
+
 }

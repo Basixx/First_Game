@@ -7,53 +7,32 @@ public class RoundLogic {
 
     Choice choice = new Choice();
 
-    public void computerBetTurn(Integer userBalls, Integer computerBalls,
-                                      Integer computerBet, boolean ifCompGuessed, BallsCount ballsCount) {
-        System.out.println("computerBetTurn");
-        System.out.println("user " + userBalls);
-        System.out.println("comp " + computerBalls);
-
-        int userBallsBet = choice.getBallsChoiceBox().getValue();
-        int computerBallsBet = computerBet;
-
-        System.out.println("user bet " + userBallsBet);
-        System.out.println("comp bet " + computerBallsBet);
-
-        if (ifCompGuessed) {
-            computerBalls += computerBallsBet;
-            userBalls -= computerBallsBet;
-        } else {
-            userBalls += userBallsBet;
-            computerBalls -= userBallsBet;
-        }
-
-        System.out.println("user " + userBalls);
-        System.out.println("comp " + computerBalls);
-
-        ballsCount.computerBalls = computerBalls;
-        ballsCount.userBalls = userBalls;
+    public void computerGuessTurn(Integer userBalls, Integer computerBalls,
+                                  Integer computerBet, boolean ifCompGuessed, BallsCount ballsCount) {
+        System.out.println("computerGuessTurn");
+        turn(computerBet, ifCompGuessed, computerBalls, userBalls, ballsCount );
     }
 
-    public void userBetTurn(Integer userBalls, Integer computerBalls,
-                                  Integer computerBet, boolean ifUserGuessed, BallsCount ballsCount) {
-        System.out.println("userBetTurn");
+    public void userGuessTurn(Integer userBalls, Integer computerBalls,
+                              Integer computerBet, boolean ifUserGuessed, BallsCount ballsCount) {
+        System.out.println("userGuessTurn");
+        turn(computerBet, !ifUserGuessed, computerBalls, userBalls, ballsCount);
+    }
+
+    private void turn(int computerBet, boolean guess, int computerBalls, int userBalls, BallsCount ballsCount){
         System.out.println("user " + userBalls);
         System.out.println("comp " + computerBalls);
 
         int userBallsBet = choice.getBallsChoiceBox().getValue();
         int computerBallsBet = computerBet;
 
-        System.out.println("user bet " + userBallsBet);
-        System.out.println("comp bet " + computerBallsBet);
-        System.out.println(ifUserGuessed);
-        if (ifUserGuessed) {
-            userBalls += userBallsBet;
-            computerBalls -= userBallsBet;
-        } else {
+        if (guess) {
             computerBalls += computerBallsBet;
             userBalls -= computerBallsBet;
+        } else {
+            userBalls += userBallsBet;
+            computerBalls -= userBallsBet;
         }
-
         System.out.println("user " + userBalls);
         System.out.println("comp " + computerBalls);
 

@@ -15,7 +15,7 @@ public class Marbles extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Game game = new Game();
-        Scene scene = game.showMainMenu(primaryStage);
+        Scene scene = game.showModeChoice(primaryStage);
         primaryStage.setTitle("Marbles");
         primaryStage.setScene(scene);
         primaryStage.show();

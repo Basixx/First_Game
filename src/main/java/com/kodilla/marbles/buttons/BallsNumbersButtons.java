@@ -20,7 +20,7 @@ public class BallsNumbersButtons {
     private final Button button15 = new Button();
     private final Button button20 = new Button();
 
-    private int howManyStart;
+    private Integer howManyStart;
 
     private void setButton(Button button, ImageView imageView){
         button.setTranslateX(200);
@@ -52,7 +52,7 @@ public class BallsNumbersButtons {
         return button20;
     }
 
-    public int getHowManyStart() {
+    public Integer getHowManyStart() {
         return howManyStart;
     }
 }

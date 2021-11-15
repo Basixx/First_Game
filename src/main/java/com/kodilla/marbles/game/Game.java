@@ -1,9 +1,6 @@
 package com.kodilla.marbles.game;
 
-import com.kodilla.marbles.buttons.BallsColorsButtons;
-import com.kodilla.marbles.buttons.BallsNumbersButtons;
-import com.kodilla.marbles.buttons.CheckButton;
-import com.kodilla.marbles.buttons.StartGameButton;
+import com.kodilla.marbles.buttons.*;
 import com.kodilla.marbles.texts.GameTexts;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,8 +18,9 @@ public class Game {
     private int balls;
     private final GameTexts gameTexts = new GameTexts();
     private final Round round = new Round();
-    private final BallsColorsButtons ballsColorsButtons = new BallsColorsButtons();
-    private final BallsNumbersButtons ballsNumbersButtons = new BallsNumbersButtons();
+    private BallsColorsButtons ballsColorsButtons = new BallsColorsButtons();
+    private BallsNumbersButtons ballsNumbersButtons = new BallsNumbersButtons();
+    private ModeButtons modeButtons = new ModeButtons();
     private RoundUI roundUI = new RoundUI();
     private RoundLogic roundLogic = new RoundLogic();
 
@@ -41,6 +39,22 @@ public class Game {
         return grid;
     }
 
+    public Scene showModeChoice(Stage primaryStage){
+        GridPane grid = setBackGround();
+        grid.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
+        Text choiceGameMode = gameTexts.setText("choose game mode");
+        grid.add(choiceGameMode, 1, 0);
+        modeButtons.setButtons();
+
+        modeButtons.getSinglePlayerButton().setOnAction
+                ((e) -> primaryStage.setScene(showMainMenu(primaryStage)));
+
+        grid.add(modeButtons.getSinglePlayerButton(), 0, 10);
+        grid.add(modeButtons.getDoublePlayerButton(), 2, 10);
+
+        return scene;
+    }
     public Scene showMainMenu(Stage primaryStage) {
 
         GridPane grid = setBackGround();
@@ -77,8 +91,21 @@ public class Game {
         StartGameButton startGameButton = new StartGameButton();
         startGameButton.setButton();
         Button startGame = startGameButton.getStartGameButton();
-        startGame.setOnAction((e) -> primaryStage.setScene(showMainGame(primaryStage)));
-        grid.add(startGame, 4, 20);
+
+
+        startGame.setOnAction((e) -> {
+                    if(ballsNumbersButtons.getHowManyStart() != null
+                            && ballsColorsButtons.getChoiceNumber() != null){
+
+                        primaryStage.setScene(showMainGame(primaryStage));
+                    }
+                    else {
+                        grid.add(new Text("choose color and count"), 6, 15);
+                    }
+                });
+
+
+                grid.add(startGame, 4, 20);
 
         System.out.println("1ile kulek: " + balls);
         return scene;
@@ -101,12 +128,14 @@ public class Game {
 
         grid.add(check, 10, 10, 1, 1);
         check.setOnAction((e) -> {
-            round.playRound(roundUI, roundLogic, grid, i, ballsColor);
-           // primaryStage.setScene(showRound());
-            i++;
+            if(roundLogic.choice.getBallsChoiceBox().getValue() != null) {
+                round.playRound(roundUI, roundLogic, grid, i, ballsColor);
+                // primaryStage.setScene(showRound());
+                i++;
 
-            if (round.ballsCount.userBalls <=0 || round.ballsCount.computerBalls <= 0) {
-                primaryStage.setScene(showEnd(round.ballsCount.userBalls, round.ballsCount.computerBalls));
+                if (round.ballsCount.userBalls <= 0 || round.ballsCount.computerBalls <= 0) {
+                    primaryStage.setScene(showEnd(round.ballsCount.userBalls, round.ballsCount.computerBalls));
+                }
             }
         });
         return scene;

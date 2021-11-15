@@ -3,7 +3,7 @@ package com.kodilla.marbles.buttons;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tooltip;
 
-public class Choice {
+public class ChoiceBoxUser {
     private final ChoiceBox <Integer> ballsChoiceBox = new ChoiceBox <>();
 
     public void adjustChoiceBox(int ballsCount){

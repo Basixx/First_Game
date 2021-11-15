@@ -15,7 +15,7 @@ public class BallsColorsButtons {
     private final Button purpleBallButton = new Button();
     private final Button yellowBallButton = new Button();
 
-    private int choiceNumber;
+    private Integer choiceNumber;
 
     private void setButton(javafx.scene.control.Button button, ImageView imageView){
         button.setTranslateX(200);
@@ -53,7 +53,7 @@ public class BallsColorsButtons {
         return yellowBallButton;
     }
 
-    public int getChoiceNumber() {
+    public Integer getChoiceNumber() {
         return choiceNumber;
     }
 }

@@ -10,12 +10,17 @@ import javafx.scene.input.MouseEvent;
 public class BallsColorsButtons {
     private final BallsImages ballsImages = new BallsImages();
 
-    private final Button greenBallButton = new Button();
-    private final Button pinkBallButton = new Button();
-    private final Button purpleBallButton = new Button();
-    private final Button yellowBallButton = new Button();
+    private final Button greenBallButton1 = new Button();
+    private final Button pinkBallButton1 = new Button();
+    private final Button purpleBallButton1 = new Button();
+    private final Button yellowBallButton1 = new Button();
+    private final Button greenBallButton2 = new Button();
+    private final Button pinkBallButton2 = new Button();
+    private final Button purpleBallButton2 = new Button();
+    private final Button yellowBallButton2 = new Button();
 
-    private Integer choiceNumber;
+    private Integer choiceNumberPlayer1;
+    private Integer choiceNumberPlayer2;
 
     private void setButton(javafx.scene.control.Button button, ImageView imageView){
         button.setTranslateX(200);
@@ -26,34 +31,64 @@ public class BallsColorsButtons {
         button.addEventHandler(MouseEvent.MOUSE_EXITED, e -> button.setEffect(null));
     }
 
-    public void setAllButtons(){
-        setButton(greenBallButton, ballsImages.green);
-        greenBallButton.setOnAction((e) -> choiceNumber = 0);
-        setButton(pinkBallButton, ballsImages.pink);
-        pinkBallButton.setOnAction((e) -> choiceNumber = 1);
-        setButton(purpleBallButton, ballsImages.purple);
-        purpleBallButton.setOnAction((e) -> choiceNumber = 2);
-        setButton(yellowBallButton, ballsImages.yellow);
-        yellowBallButton.setOnAction((e) -> choiceNumber = 3);
+    public void setAllButtonsPlayer1(){
+        setButton(greenBallButton1, ballsImages.green1);
+        greenBallButton1.setOnAction((e) -> choiceNumberPlayer1 = 0);
+        setButton(pinkBallButton1, ballsImages.pink1);
+        pinkBallButton1.setOnAction((e) -> choiceNumberPlayer1 = 1);
+        setButton(purpleBallButton1, ballsImages.purple1);
+        purpleBallButton1.setOnAction((e) -> choiceNumberPlayer1 = 2);
+        setButton(yellowBallButton1, ballsImages.yellow1);
+        yellowBallButton1.setOnAction((e) -> choiceNumberPlayer1 = 3);
+    }
+    public void setAllButtonsPlayer2(){
+        setButton(greenBallButton2, ballsImages.green2);
+        greenBallButton2.setOnAction((e) -> choiceNumberPlayer2 = 0);
+        setButton(pinkBallButton2, ballsImages.pink2);
+        pinkBallButton2.setOnAction((e) -> choiceNumberPlayer2 = 1);
+        setButton(purpleBallButton2, ballsImages.purple2);
+        purpleBallButton2.setOnAction((e) -> choiceNumberPlayer2 = 2);
+        setButton(yellowBallButton2, ballsImages.yellow2);
+        yellowBallButton2.setOnAction((e) -> choiceNumberPlayer2 = 3);
     }
 
-    public Button getGreenBallButton() {
-        return greenBallButton;
+    public Button getGreenBallButton1() {
+        return greenBallButton1;
     }
 
-    public Button getRedChipButton() {
-        return pinkBallButton;
+    public Button getPinkBallButton1() {
+        return pinkBallButton1;
     }
 
-    public Button getPurpleBallButton() {
-        return purpleBallButton;
+    public Button getPurpleBallButton1() {
+        return purpleBallButton1;
     }
 
-    public Button getYellowBallButton() {
-        return yellowBallButton;
+    public Button getYellowBallButton1() {
+        return yellowBallButton1;
     }
 
-    public Integer getChoiceNumber() {
-        return choiceNumber;
+    public Button getGreenBallButton2() {
+        return greenBallButton2;
+    }
+
+    public Button getPinkBallButton2() {
+        return pinkBallButton2;
+    }
+
+    public Button getPurpleBallButton2() {
+        return purpleBallButton2;
+    }
+
+    public Button getYellowBallButton2() {
+        return yellowBallButton2;
+    }
+
+    public Integer getChoiceNumberPlayer1() {
+        return choiceNumberPlayer1;
+    }
+
+    public Integer getChoiceNumberPlayer2() {
+        return choiceNumberPlayer2;
     }
 }

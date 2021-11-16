@@ -1,6 +1,7 @@
 package com.kodilla.marbles.game;
 
 import com.kodilla.marbles.auxiliary.BallsImages;
+import com.kodilla.marbles.auxiliary.PaneSet;
 import com.kodilla.marbles.buttons.ChoiceButtons;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -13,35 +14,29 @@ import javafx.scene.paint.Color;
 import java.util.Map;
 
 public class RoundUI {
-    private final FlowPane ballsViewComputer = new FlowPane(Orientation.HORIZONTAL);
-    private final FlowPane ballsViewUser = new FlowPane(Orientation.HORIZONTAL);
+    private FlowPane ballsViewComputer = new FlowPane(Orientation.HORIZONTAL);
+    private FlowPane ballsViewUser = new FlowPane(Orientation.HORIZONTAL);
+    private PaneSet paneSet = new PaneSet();
 
     private void showChoiceBox(GridPane grid, RoundLogic roundLogic, int ballsCount) {
         roundLogic.choice.adjustChoiceBox(ballsCount);
-        grid.add(roundLogic.choice.getBallsChoiceBox(), 4, 4);
+        grid.add(roundLogic.choice.getBallsChoiceBox(), 15, 10);
     }
 
     private void showBalls(GridPane grid, Integer userBalls, Integer computerBalls, int userBallsColor, int computerBallsColor) {
 
-        BallsImages ballsImages = new BallsImages();
-        Map<Integer, Image> imagesMap = ballsImages.imageHashMap();
+        ballsViewComputer = paneSet.setPane(computerBalls, computerBallsColor);
+        ballsViewUser = paneSet.setPane(userBalls, userBallsColor);
 
-        for (int i = 0; i < userBalls; i++) {
-            ImageView ball = new ImageView(imagesMap.get(computerBallsColor));
-            ballsViewComputer.getChildren().add(ball);
-        }
-        for (int i = 0; i < computerBalls; i++) {
-            ImageView ball = new ImageView(imagesMap.get(userBallsColor));
-            ballsViewUser.getChildren().add(ball);
-        }
-
-        grid.add(ballsViewComputer, 0, 0, 10, 1);
-        grid.add(ballsViewUser, 0, 40, 10, 1);
+        grid.add(ballsViewComputer, 1, 0, 10, 1);
+        grid.add(ballsViewUser, 1, 20, 10, 1);
     }
+
+
 
     public void showChoiceButtons(GridPane grid, ChoiceButtons choiceButtons) {
         choiceButtons.setBothButtons();
-        grid.add(choiceButtons.getOddButton(), 10, 10);
+        grid.add(choiceButtons.getOddButton(), 15, 20);
         grid.add(choiceButtons.getEvenButton(), 20, 20);
     }
 

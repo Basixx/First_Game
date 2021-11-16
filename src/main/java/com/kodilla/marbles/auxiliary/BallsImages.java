@@ -11,10 +11,15 @@ public class BallsImages {
     private final Image purpleBall = new Image("file:src/main/resources/balls/purple_ball.png");
     private final Image yellowBall = new Image("file:src/main/resources/balls/yellow_ball.png");
 
-    public ImageView green = new ImageView(greenBall);
-    public ImageView pink = new ImageView(pinkBall);
-    public ImageView purple = new ImageView(purpleBall);
-    public ImageView yellow = new ImageView(yellowBall);
+    public ImageView green1 = new ImageView(greenBall);
+    public ImageView pink1 = new ImageView(pinkBall);
+    public ImageView purple1 = new ImageView(purpleBall);
+    public ImageView yellow1 = new ImageView(yellowBall);
+    public ImageView green2 = new ImageView(greenBall);
+    public ImageView pink2 = new ImageView(pinkBall);
+    public ImageView purple2 = new ImageView(purpleBall);
+    public ImageView yellow2 = new ImageView(yellowBall);
+
 
     public HashMap <Integer, Image> imageHashMap(){
         HashMap<Integer, Image> integerImageMap = new HashMap<>();

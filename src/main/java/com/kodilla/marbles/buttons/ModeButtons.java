@@ -8,7 +8,7 @@ public class ModeButtons {
 
     public void setButton(Button button, String text){
         button.setText(text);
-        button.setStyle("-fx-font-size: 18; -fx-font: arial");
+        button.setStyle("-fx-font-size: 18");
     }
 
     public void setButtons(){

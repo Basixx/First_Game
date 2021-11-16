@@ -1,5 +1,6 @@
 package com.kodilla.marbles.game;
 
+import com.kodilla.marbles.auxiliary.BackgroundSet;
 import com.kodilla.marbles.buttons.*;
 import com.kodilla.marbles.texts.GameTexts;
 import javafx.geometry.Insets;
@@ -13,7 +14,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Game {
-    private final Image inGameBackground = new Image("file:src/main/resources/background/background.png");
     private int i = 0;
     private int balls;
     private final GameTexts gameTexts = new GameTexts();
@@ -23,24 +23,11 @@ public class Game {
     private ModeButtons modeButtons = new ModeButtons();
     private RoundUI roundUI = new RoundUI();
     private RoundLogic roundLogic = new RoundLogic();
-
-    private GridPane setBackGround() {
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
-        BackgroundImage backgroundImage = new BackgroundImage(inGameBackground, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        Background background = new Background(backgroundImage);
-
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setPadding(new Insets(50, 50, 50, 50));
-        grid.setHgap(15);
-        grid.setVgap(15);
-        grid.setBackground(background);
-
-        return grid;
-    }
+    private BackgroundSet backgroundSet = new BackgroundSet();
+    private DoublePlayer doublePlayer = new DoublePlayer();
 
     public Scene showModeChoice(Stage primaryStage){
-        GridPane grid = setBackGround();
+        GridPane grid = backgroundSet.setBackGround();
         grid.setAlignment(Pos.CENTER);
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
         Text choiceGameMode = gameTexts.setText("choose game mode");
@@ -48,16 +35,19 @@ public class Game {
         modeButtons.setButtons();
 
         modeButtons.getSinglePlayerButton().setOnAction
-                ((e) -> primaryStage.setScene(showMainMenu(primaryStage)));
+                ((e) -> primaryStage.setScene(showMainMenuSinglePlayer(primaryStage)));
+
+        modeButtons.getDoublePlayerButton().setOnAction
+                ((e) -> primaryStage.setScene(showDoublePlayerMainMenu(primaryStage)));
 
         grid.add(modeButtons.getSinglePlayerButton(), 0, 10);
         grid.add(modeButtons.getDoublePlayerButton(), 2, 10);
 
         return scene;
     }
-    public Scene showMainMenu(Stage primaryStage) {
+    public Scene showMainMenuSinglePlayer(Stage primaryStage) {
 
-        GridPane grid = setBackGround();
+        GridPane grid = backgroundSet.setBackGround();
         grid.setAlignment(Pos.TOP_CENTER);
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
 
@@ -77,14 +67,14 @@ public class Game {
 
         grid.add(numberPane, 0, 10);
 
-        ballsColorsButtons.setAllButtons();
+        ballsColorsButtons.setAllButtonsPlayer1();
 
         FlowPane colorPane = new FlowPane();
         colorPane.setHgap(60);
-        colorPane.getChildren().add(ballsColorsButtons.getGreenBallButton());
-        colorPane.getChildren().add(ballsColorsButtons.getRedChipButton());
-        colorPane.getChildren().add(ballsColorsButtons.getPurpleBallButton());
-        colorPane.getChildren().add(ballsColorsButtons.getYellowBallButton());
+        colorPane.getChildren().add(ballsColorsButtons.getGreenBallButton1());
+        colorPane.getChildren().add(ballsColorsButtons.getPinkBallButton1());
+        colorPane.getChildren().add(ballsColorsButtons.getPurpleBallButton1());
+        colorPane.getChildren().add(ballsColorsButtons.getYellowBallButton1());
 
         grid.add(colorPane, 0, 15);
 
@@ -95,9 +85,9 @@ public class Game {
 
         startGame.setOnAction((e) -> {
                     if(ballsNumbersButtons.getHowManyStart() != null
-                            && ballsColorsButtons.getChoiceNumber() != null){
+                            && ballsColorsButtons.getChoiceNumberPlayer1() != null){
 
-                        primaryStage.setScene(showMainGame(primaryStage));
+                        primaryStage.setScene(showSinglePlayerGame(primaryStage));
                     }
                     else {
                         grid.add(new Text("choose color and count"), 6, 15);
@@ -111,10 +101,10 @@ public class Game {
         return scene;
     }
 
-    public Scene showMainGame(Stage primaryStage) {
-        GridPane grid = setBackGround();
+    public Scene showSinglePlayerGame(Stage primaryStage) {
+        GridPane grid = backgroundSet.setBackGround();
 
-        int ballsColor = ballsColorsButtons.getChoiceNumber();
+        int ballsColor = ballsColorsButtons.getChoiceNumberPlayer1();
 
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
         balls = ballsNumbersButtons.getHowManyStart();
@@ -141,9 +131,81 @@ public class Game {
         return scene;
     }
 
+    public Scene showDoublePlayerMainMenu(Stage primaryStage){
+
+        GridPane grid = backgroundSet.setBackGround();
+        grid.setAlignment(Pos.TOP_CENTER);
+        Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
+
+        Text mainMenu = gameTexts.setMainMenuText();
+        grid.add(mainMenu, 0, 0);
+
+        Text initialChoice = gameTexts.setText("Choose balls count and color for both players");
+        grid.add(initialChoice, 0, 5);
+
+        ballsNumbersButtons.setAllButtons();
+
+        FlowPane numberPane = new FlowPane();
+        numberPane.setHgap(30);
+        numberPane.getChildren().add(ballsNumbersButtons.getButton10());
+        numberPane.getChildren().add(ballsNumbersButtons.getButton15());
+        numberPane.getChildren().add(ballsNumbersButtons.getButton20());
+
+        grid.add(numberPane, 0, 10);
+
+        ballsColorsButtons.setAllButtonsPlayer1();
+        ballsColorsButtons.setAllButtonsPlayer2();
+
+        FlowPane colorPane1 = new FlowPane();
+        colorPane1.setHgap(25);
+        colorPane1.getChildren().add(ballsColorsButtons.getGreenBallButton1());
+        colorPane1.getChildren().add(ballsColorsButtons.getPinkBallButton1());
+        colorPane1.getChildren().add(ballsColorsButtons.getPurpleBallButton1());
+        colorPane1.getChildren().add(ballsColorsButtons.getYellowBallButton1());
+
+        FlowPane colorPane2 = new FlowPane();
+        colorPane2.setHgap(25);
+        colorPane2.getChildren().add(ballsColorsButtons.getGreenBallButton2());
+        colorPane2.getChildren().add(ballsColorsButtons.getPinkBallButton2());
+        colorPane2.getChildren().add(ballsColorsButtons.getPurpleBallButton2());
+        colorPane2.getChildren().add(ballsColorsButtons.getYellowBallButton2());
+
+        grid.add(colorPane1, 0, 15, 3, 1);
+        grid.add(colorPane2, 0, 20, 3, 1);
+
+        Text player1 = gameTexts.setText("Player 1");
+        Text player2 = gameTexts.setText("Player 2");
+
+        grid.add(player1, 0, 15);
+        grid.add(player2, 0, 20);
+
+        StartGameButton startGameButton = new StartGameButton();
+        startGameButton.setButton();
+        Button startGame = startGameButton.getStartGameButton();
+
+
+        startGame.setOnAction((e) -> {
+            if(ballsNumbersButtons.getHowManyStart() != null
+                    && ballsColorsButtons.getChoiceNumberPlayer1() != null){
+
+                primaryStage.setScene(doublePlayer.showPlayer1Turn
+                        (primaryStage, ballsNumbersButtons.getHowManyStart()));
+            }
+            else {
+                grid.add(new Text("choose color and count"), 6, 15);
+            }
+        });
+
+
+        grid.add(startGame, 4, 20);
+
+        System.out.println("1ile kulek: " + balls);
+        return scene;
+    }
+
     public Scene showEnd(int userBalls, int computerBalls){
 
-        GridPane grid = setBackGround();
+        GridPane grid = backgroundSet.setBackGround();
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
         GameTexts gameTexts = new GameTexts();
         Text gameOver = gameTexts.setText("Game Over");

@@ -2,14 +2,17 @@ package com.kodilla.marbles.game;
 
 import com.kodilla.marbles.auxiliary.BallsImages;
 import com.kodilla.marbles.auxiliary.PaneSet;
+import com.kodilla.marbles.buttons.CheckButton;
 import com.kodilla.marbles.buttons.ChoiceButtons;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.util.Map;
 
@@ -61,5 +64,7 @@ public class RoundUI {
         showIU(grid, roundLogic, userBalls, computerBalls, userBallsColor, computerBallsColor);
         return userInterface;
     }
+
+
 
 }

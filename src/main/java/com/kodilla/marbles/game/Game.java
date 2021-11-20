@@ -3,11 +3,9 @@ package com.kodilla.marbles.game;
 import com.kodilla.marbles.auxiliary.BackgroundSet;
 import com.kodilla.marbles.buttons.*;
 import com.kodilla.marbles.texts.GameTexts;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -24,7 +22,7 @@ public class Game {
     private RoundUI roundUI = new RoundUI();
     private RoundLogic roundLogic = new RoundLogic();
     private BackgroundSet backgroundSet = new BackgroundSet();
-    private DoublePlayer doublePlayer = new DoublePlayer();
+    private DoublePlayerUI doublePlayerUI = new DoublePlayerUI();
 
     public Scene showModeChoice(Stage primaryStage){
         GridPane grid = backgroundSet.setBackGround();
@@ -111,7 +109,6 @@ public class Game {
         round.setBalls(balls);
         System.out.println("2ile kulek: " + balls);
         round.firstRound(roundUI, roundLogic, grid, ballsColor);
-       // primaryStage.setScene(firstRound(roundUI, roundLogic, ballsColor));
 
         CheckButton checkButton = new CheckButton();
         Button check = checkButton.setCheckButton();
@@ -130,6 +127,7 @@ public class Game {
         });
         return scene;
     }
+
 
     public Scene showDoublePlayerMainMenu(Stage primaryStage){
 
@@ -188,7 +186,7 @@ public class Game {
             if(ballsNumbersButtons.getHowManyStart() != null
                     && ballsColorsButtons.getChoiceNumberPlayer1() != null){
 
-                primaryStage.setScene(doublePlayer.showPlayer1Turn
+                primaryStage.setScene(doublePlayerUI.showPlayer1Turn1
                         (primaryStage, ballsNumbersButtons.getHowManyStart()));
             }
             else {
@@ -221,21 +219,4 @@ public class Game {
         }
         return scene;
     }
-
-   /* public Scene firstRound(RoundUI roundUI, RoundLogic roundLogic, int ballsColor) {
-        GridPane gridFirstRound = setBackGround();
-        Scene firstRound = roundUI.setFirstRoundScene(gridFirstRound, roundLogic, round.ballsCount.userBalls,
-                round.ballsCount.computerBalls, ballsColor, round.computer.getComputerBallsColor());
-        return firstRound;
-    }*/
-/*
-    public Scene showRound(){
-        GridPane grid = setBackGround();
-        Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
-        roundUI.showIU(grid, roundLogic, round.ballsCount.userBalls, round.ballsCount.computerBalls,
-                ballsColorsButtons.getChoiceNumber(), ballsColorsButtons.
-        );
-
-        return scene;
-    }*/
 }

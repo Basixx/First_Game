@@ -1,6 +1,7 @@
 package com.kodilla.marbles.game;
 
 import com.kodilla.marbles.auxiliary.BackgroundSet;
+
 import com.kodilla.marbles.buttons.*;
 import com.kodilla.marbles.texts.GameTexts;
 import javafx.geometry.Pos;
@@ -23,6 +24,7 @@ public class Game {
     private RoundLogic roundLogic = new RoundLogic();
     private BackgroundSet backgroundSet = new BackgroundSet();
     private DoublePlayerUI doublePlayerUI = new DoublePlayerUI();
+    private BackToMainButton backToMainButton = new BackToMainButton();
 
     public Scene showModeChoice(Stage primaryStage){
         GridPane grid = backgroundSet.setBackGround();
@@ -80,7 +82,6 @@ public class Game {
         startGameButton.setButton();
         Button startGame = startGameButton.getStartGameButton();
 
-
         startGame.setOnAction((e) -> {
                     if(ballsNumbersButtons.getHowManyStart() != null
                             && ballsColorsButtons.getChoiceNumberPlayer1() != null){
@@ -93,7 +94,11 @@ public class Game {
                 });
 
 
-                grid.add(startGame, 4, 20);
+        grid.add(startGame, 4, 20);
+
+        Button mainMenuButton = backToMainButton.getBacktoMenuButton();
+        mainMenuButton.setOnAction((e) -> primaryStage.setScene(showModeChoice(primaryStage)));
+        grid.add(mainMenuButton, 0, 20);
 
         System.out.println("1ile kulek: " + balls);
         return scene;
@@ -121,7 +126,7 @@ public class Game {
                 i++;
 
                 if (round.ballsCount.userBalls <= 0 || round.ballsCount.computerBalls <= 0) {
-                    primaryStage.setScene(showEnd(round.ballsCount.userBalls, round.ballsCount.computerBalls));
+                    primaryStage.setScene(showEnd(round.ballsCount.userBalls, round.ballsCount.computerBalls, primaryStage));
                 }
             }
         });
@@ -182,26 +187,36 @@ public class Game {
         Button startGame = startGameButton.getStartGameButton();
 
 
+
         startGame.setOnAction((e) -> {
             if(ballsNumbersButtons.getHowManyStart() != null
                     && ballsColorsButtons.getChoiceNumberPlayer1() != null){
+                doublePlayerUI.variables.player1Balls = ballsNumbersButtons.getHowManyStart();
+                doublePlayerUI.variables.player2Balls = ballsNumbersButtons.getHowManyStart();
+                doublePlayerUI.variables.player1BallsColor = ballsColorsButtons.getChoiceNumberPlayer1();
+                doublePlayerUI.variables.player2BallsColor = ballsColorsButtons.getChoiceNumberPlayer2();
 
                 primaryStage.setScene(doublePlayerUI.showPlayer1Turn1
-                        (primaryStage, ballsNumbersButtons.getHowManyStart()));
+                        (primaryStage, doublePlayerUI.variables));
+
+
             }
             else {
                 grid.add(new Text("choose color and count"), 6, 15);
             }
         });
 
-
         grid.add(startGame, 4, 20);
+
+        Button mainMenuButton = backToMainButton.getBacktoMenuButton();
+        mainMenuButton.setOnAction((e) -> primaryStage.setScene(showModeChoice(primaryStage)));
+        grid.add(mainMenuButton, 4, 15);
 
         System.out.println("1ile kulek: " + balls);
         return scene;
     }
 
-    public Scene showEnd(int userBalls, int computerBalls){
+    public Scene showEnd(int userBalls, int computerBalls, Stage primaryStage){
 
         GridPane grid = backgroundSet.setBackGround();
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
@@ -217,6 +232,11 @@ public class Game {
             Text youWon = gameTexts.setText("YOU WON!!!");
             grid.add(youWon, 0, 2);
         }
+
+        Button playAgain = new Button("Play Again");
+        playAgain.setOnAction((e) -> primaryStage.setScene(showModeChoice(primaryStage)) );
+        grid.add(playAgain, 0, 4);
+
         return scene;
     }
 }

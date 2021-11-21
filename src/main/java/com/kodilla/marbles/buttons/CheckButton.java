@@ -15,6 +15,4 @@ public class CheckButton {
         button.setPadding(Insets.EMPTY);
         return button;
     }
-
-
 }

@@ -14,6 +14,7 @@ public class DoublePlayerGame {
 
         return doubleRoundVariables;
     }
+
     public DoubleRoundVariables player1Guess(DoubleRoundVariables doubleRoundVariables){
 
         BallsCount ballsCount = playerGuess(doubleRoundVariables.player2Balls, doubleRoundVariables.player1Balls,
@@ -27,27 +28,25 @@ public class DoublePlayerGame {
     private BallsCount playerGuess(int playerABalls, int playerBBalls, int playerABet, int playerBBet, boolean ifEven){
 
         BallsCount ballsCount = new BallsCount();
-        int pl1Bet = playerABet;
-        int pl2Bet = playerBBet;
 
         System.out.println("początek rundy");
         System.out.println("Player1Balls = " + playerABalls);
         System.out.println("Player2Balls = " + playerBBalls);
-        System.out.println("Player1Bet = " + pl1Bet);
-        System.out.println("Player2Bet = " + pl2Bet);
+        System.out.println("Player1Bet = " + playerABet);
+        System.out.println("Player2Bet = " + playerBBet);
         System.out.println("czy obstawia parzyste: " + ifEven);
 
-        if (ifEven == (playerABet %2 ==2)){
+        if (ifEven == (playerABet %2 ==0)){
             System.out.println("Player1Balls = " + playerABalls);
             System.out.println("Player2Balls = " + playerBBalls);
-            playerABalls -=pl2Bet;
-            playerBBalls += pl2Bet;
+            playerABalls -= playerBBet;
+            playerBBalls += playerBBet;
         }
         else{
             System.out.println("Player1Balls = " + playerABalls);
             System.out.println("Player2Balls = " + playerBBalls);
-            playerABalls +=pl1Bet;
-            playerBBalls -= pl1Bet;
+            playerABalls += playerABet;
+            playerBBalls -= playerABet;
         }
 
         System.out.println("po rundzie");

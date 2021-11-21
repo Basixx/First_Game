@@ -1,8 +1,8 @@
 package com.kodilla.marbles.game;
 
 import com.kodilla.marbles.auxiliary.BackgroundSet;
-
 import com.kodilla.marbles.buttons.*;
+import com.kodilla.marbles.players.Computer;
 import com.kodilla.marbles.texts.GameTexts;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,18 +13,16 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Game {
-    private int i = 0;
-    private int balls;
     private final GameTexts gameTexts = new GameTexts();
-    private final Round round = new Round();
     private BallsColorsButtons ballsColorsButtons = new BallsColorsButtons();
     private BallsNumbersButtons ballsNumbersButtons = new BallsNumbersButtons();
     private ModeButtons modeButtons = new ModeButtons();
-    private RoundUI roundUI = new RoundUI();
-    private RoundLogic roundLogic = new RoundLogic();
     private BackgroundSet backgroundSet = new BackgroundSet();
+    private SinglePlayerUI singlePlayerUI = new SinglePlayerUI();
     private DoublePlayerUI doublePlayerUI = new DoublePlayerUI();
     private BackToMainButton backToMainButton = new BackToMainButton();
+    private EndGame endGame = new EndGame();
+    private Computer computer = new Computer();
 
     public Scene showModeChoice(Stage primaryStage){
         GridPane grid = backgroundSet.setBackGround();
@@ -35,7 +33,7 @@ public class Game {
         modeButtons.setButtons();
 
         modeButtons.getSinglePlayerButton().setOnAction
-                ((e) -> primaryStage.setScene(showMainMenuSinglePlayer(primaryStage)));
+                ((e) -> primaryStage.setScene(showSinglePlayerMainMenu(primaryStage)));
 
         modeButtons.getDoublePlayerButton().setOnAction
                 ((e) -> primaryStage.setScene(showDoublePlayerMainMenu(primaryStage)));
@@ -45,7 +43,12 @@ public class Game {
 
         return scene;
     }
-    public Scene showMainMenuSinglePlayer(Stage primaryStage) {
+
+    public Scene showSinglePlayerMainMenu(Stage primaryStage) {
+        doublePlayerUI.variables.player1Balls = null;
+        doublePlayerUI.variables.player2Balls = null;
+        doublePlayerUI.variables.player1BallsColor = null;
+        doublePlayerUI.variables.player2BallsColor = null;
 
         GridPane grid = backgroundSet.setBackGround();
         grid.setAlignment(Pos.TOP_CENTER);
@@ -85,8 +88,11 @@ public class Game {
         startGame.setOnAction((e) -> {
                     if(ballsNumbersButtons.getHowManyStart() != null
                             && ballsColorsButtons.getChoiceNumberPlayer1() != null){
-
-                        primaryStage.setScene(showSinglePlayerGame(primaryStage));
+                        singlePlayerUI.variables.playerBalls = ballsNumbersButtons.getHowManyStart();
+                        singlePlayerUI.variables.computerBalls = ballsNumbersButtons.getHowManyStart();
+                        singlePlayerUI.variables.playerBallsColor = ballsColorsButtons.getChoiceNumberPlayer1();
+                        singlePlayerUI.variables.computerBallsColor = computer.getComputerBallsColor();
+                        primaryStage.setScene(singlePlayerUI.showSimpleBet(primaryStage, singlePlayerUI.variables));
                     }
                     else {
                         grid.add(new Text("choose color and count"), 6, 15);
@@ -100,39 +106,8 @@ public class Game {
         mainMenuButton.setOnAction((e) -> primaryStage.setScene(showModeChoice(primaryStage)));
         grid.add(mainMenuButton, 0, 20);
 
-        System.out.println("1ile kulek: " + balls);
         return scene;
     }
-
-    public Scene showSinglePlayerGame(Stage primaryStage) {
-        GridPane grid = backgroundSet.setBackGround();
-
-        int ballsColor = ballsColorsButtons.getChoiceNumberPlayer1();
-
-        Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
-        balls = ballsNumbersButtons.getHowManyStart();
-        round.setBalls(balls);
-        System.out.println("2ile kulek: " + balls);
-        round.firstRound(roundUI, roundLogic, grid, ballsColor);
-
-        CheckButton checkButton = new CheckButton();
-        Button check = checkButton.setCheckButton();
-
-        grid.add(check, 10, 10, 1, 1);
-        check.setOnAction((e) -> {
-            if(roundLogic.choice.getBallsChoiceBox().getValue() != null) {
-                round.playRound(roundUI, roundLogic, grid, i, ballsColor);
-                // primaryStage.setScene(showRound());
-                i++;
-
-                if (round.ballsCount.userBalls <= 0 || round.ballsCount.computerBalls <= 0) {
-                    primaryStage.setScene(showEnd(round.ballsCount.userBalls, round.ballsCount.computerBalls, primaryStage));
-                }
-            }
-        });
-        return scene;
-    }
-
 
     public Scene showDoublePlayerMainMenu(Stage primaryStage){
 
@@ -186,8 +161,6 @@ public class Game {
         startGameButton.setButton();
         Button startGame = startGameButton.getStartGameButton();
 
-
-
         startGame.setOnAction((e) -> {
             if(ballsNumbersButtons.getHowManyStart() != null
                     && ballsColorsButtons.getChoiceNumberPlayer1() != null){
@@ -209,33 +182,9 @@ public class Game {
         grid.add(startGame, 4, 20);
 
         Button mainMenuButton = backToMainButton.getBacktoMenuButton();
-        mainMenuButton.setOnAction((e) -> primaryStage.setScene(showModeChoice(primaryStage)));
+        mainMenuButton.setOnAction((e) ->
+            primaryStage.setScene(showModeChoice(primaryStage)));
         grid.add(mainMenuButton, 4, 15);
-
-        System.out.println("1ile kulek: " + balls);
-        return scene;
-    }
-
-    public Scene showEnd(int userBalls, int computerBalls, Stage primaryStage){
-
-        GridPane grid = backgroundSet.setBackGround();
-        Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
-        GameTexts gameTexts = new GameTexts();
-        Text gameOver = gameTexts.setText("Game Over");
-        grid.add(gameOver,0,0);
-
-        if (userBalls <= 0 && computerBalls >0) {
-            Text youLost = gameTexts.setText("Computer won :(");
-            grid.add(youLost, 0, 2);
-        }
-        else{
-            Text youWon = gameTexts.setText("YOU WON!!!");
-            grid.add(youWon, 0, 2);
-        }
-
-        Button playAgain = new Button("Play Again");
-        playAgain.setOnAction((e) -> primaryStage.setScene(showModeChoice(primaryStage)) );
-        grid.add(playAgain, 0, 4);
 
         return scene;
     }

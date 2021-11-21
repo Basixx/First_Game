@@ -20,7 +20,6 @@ public class BallsImages {
     public ImageView purple2 = new ImageView(purpleBall);
     public ImageView yellow2 = new ImageView(yellowBall);
 
-
     public HashMap <Integer, Image> imageHashMap(){
         HashMap<Integer, Image> integerImageMap = new HashMap<>();
 

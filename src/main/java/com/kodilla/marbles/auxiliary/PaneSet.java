@@ -4,7 +4,6 @@ import javafx.geometry.Orientation;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-
 import java.util.Map;
 
 public class PaneSet {

@@ -13,7 +13,7 @@ public class Computer {
         return generator.nextInt(ballsCount) + 1;
     }
 
-    public boolean ifGuessed() {
+    public boolean ifGuessedEven() {
         boolean guess = generator.nextBoolean();
         System.out.println(guess);
         return guess;

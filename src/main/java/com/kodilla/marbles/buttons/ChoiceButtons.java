@@ -15,7 +15,7 @@ public class ChoiceButtons {
     private final Button evenButton = new Button();
     private final ImageView buttonOddImageView = new ImageView(oddButtonImage);
     private final ImageView buttonEvenImageView = new ImageView(evenButtonImage);
-    private boolean guessIfEven;
+    private Boolean guessIfEven;
 
     private void setButton(Button button, ImageView imageView){
         button.setTranslateX(200);
@@ -41,7 +41,7 @@ public class ChoiceButtons {
         return evenButton;
     }
 
-    public boolean isGuessIfEven() {
+    public Boolean isGuessIfEven() {
         return guessIfEven;
     }
 }

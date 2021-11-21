@@ -5,5 +5,4 @@ public class BallsCount {
     public Integer computerBalls;
     public Integer playerBallsA;
     public Integer playerBallsB;
-
 }

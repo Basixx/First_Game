@@ -29,7 +29,7 @@ public class DoublePlayerUI {
     DoubleRoundVariables variables = new DoubleRoundVariables();
     private int roundNr = 1;
 
-    public Scene showSimpleBetTurn(GridPane grid, String turn, String player, int ballsCountPlA, int ballsColor, int bet, ChoiceBoxUser choiceBoxUser){
+    public Scene showSimpleBetTurn(GridPane grid, String turn,  int ballsCountPlA, int ballsColor, int bet, ChoiceBoxUser choiceBoxUser){
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
 
         Text roundNumber = gameTexts.setText("Round: " + roundNr);
@@ -50,7 +50,7 @@ public class DoublePlayerUI {
     public Scene showPlayer1Turn1(Stage primaryStage, DoubleRoundVariables variables) {
         GridPane grid = backgroundSet.setBackGround();
 
-        Scene scene = showSimpleBetTurn(grid, "Player 1 turn", "player1 ", variables.player1Balls,
+        Scene scene = showSimpleBetTurn(grid, "Player 1 turn",  variables.player1Balls,
                 variables.player1BallsColor, variables.player1BallsColor, choiceBoxPlayer1);
 
         endRoundButton.setEndRoundButton();
@@ -106,7 +106,7 @@ public class DoublePlayerUI {
 
     public Scene showPlayer2Turn2(Stage primaryStage, DoubleRoundVariables variables) {
         GridPane grid = backgroundSet.setBackGround();
-        Scene scene = showSimpleBetTurn(grid, "Player 2 turn", "player2 ", variables.player2Balls,
+        Scene scene = showSimpleBetTurn(grid, "Player 2 turn", variables.player2Balls,
                 variables.player2BallsColor, variables.player2BallsColor, choiceBoxPlayer2);
 
         endRoundButton.setEndRoundButton();
@@ -133,7 +133,7 @@ public class DoublePlayerUI {
 
     public Scene showPlayer2Turn1(Stage primaryStage, DoubleRoundVariables variables) {
         GridPane grid = backgroundSet.setBackGround();
-        Scene scene = showSimpleBetTurn(grid, "Player 2 turn", "player2 ", variables.player2Balls,
+        Scene scene = showSimpleBetTurn(grid, "Player 2 turn",  variables.player2Balls,
                 variables.player2BallsColor, variables.player2BallsColor, choiceBoxPlayer2);
 
         endRoundButton.setEndRoundButton();
@@ -166,7 +166,7 @@ public class DoublePlayerUI {
 
     public Scene showPlayer1Turn2(Stage primaryStage, DoubleRoundVariables variables) {
         GridPane grid = backgroundSet.setBackGround();
-        Scene scene = showSimpleBetTurn(grid, "Player 1 turn", "player1 ", variables.player1Balls,
+        Scene scene = showSimpleBetTurn(grid, "Player 1 turn", variables.player1Balls,
                 variables.player1BallsColor, variables.player1BallsColor, choiceBoxPlayer1);
 
         endRoundButton.setEndRoundButton();

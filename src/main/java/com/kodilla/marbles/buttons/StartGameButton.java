@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class StartGameButton {
-    private final Image greyStart = new Image("file:src/main/resources/UI/grey_panel_startGame.png");
+    private final Image greyStart = new Image("file:src/main/resources/UI/panel_startgame.png");
 
     private final Button startGameButton = new Button();
 

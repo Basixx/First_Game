@@ -21,7 +21,7 @@ public class ModeChoice {
         GridPane grid = backgroundSet.setBackGround();
         grid.setAlignment(Pos.CENTER);
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK);
-        Text choiceGameMode = gameTexts.setText("choose game mode");
+        Text choiceGameMode = gameTexts.setText("CHOOSE GAME MODE");
         grid.add(choiceGameMode, 1, 0);
         modeButtons.setButtons();
 
@@ -31,8 +31,8 @@ public class ModeChoice {
         modeButtons.getDoublePlayerButton().setOnAction
                 ((e) -> primaryStage.setScene(mainMenu.showDoublePlayerMainMenu(primaryStage)));
 
-        grid.add(modeButtons.getSinglePlayerButton(), 0, 10);
-        grid.add(modeButtons.getDoublePlayerButton(), 2, 10);
+        grid.add(modeButtons.getSinglePlayerButton(), 0, 5);
+        grid.add(modeButtons.getDoublePlayerButton(), 2, 5);
 
         return scene;
     }

@@ -9,8 +9,8 @@ import javafx.scene.input.MouseEvent;
 
 public class ChoiceButtons {
 
-    private final Image oddButtonImage = new Image("file:src/main/resources/UI/red_panel_odd.png");
-    private final Image evenButtonImage = new Image("file:src/main/resources/UI/green_panel_even.png");
+    private final Image oddButtonImage = new Image("file:src/main/resources/UI/panel_odd.png");
+    private final Image evenButtonImage = new Image("file:src/main/resources/UI/panel_even.png");
     private final Button oddButton = new Button();
     private final Button evenButton = new Button();
     private final ImageView buttonOddImageView = new ImageView(oddButtonImage);

@@ -22,8 +22,9 @@ public class GameTexts {
     public Text setText(String textString){
         Text text = new Text();
         text.setText(textString);
-        text.setFont(Font.font("arial",
-                FontWeight.BOLD, FontPosture.ITALIC, 30));
+        text.setFont(Font.font("Gentium Book Basic",
+                FontWeight.BOLD, FontPosture.ITALIC, 40));
+        text.setFill(Color.NAVY);
         return text;
     }
 

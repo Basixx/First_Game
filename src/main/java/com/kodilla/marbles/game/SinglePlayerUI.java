@@ -74,7 +74,7 @@ public class SinglePlayerUI {
         Scene scene = new Scene(grid, 1600, 900, Color.BLACK );
 
         paneUser = paneSet.setPane(variables.playerBalls, variables.playerBallsColor);
-        grid.add(paneUser, 0, 10);
+        grid.add(paneUser, 0, 5);
 
         paneComputer = paneSet.setPane(variables.computerBalls, variables.computerBallsColor);
         grid.add(paneComputer, 0, 0);
@@ -84,7 +84,7 @@ public class SinglePlayerUI {
 
         CheckButton checkButton = new CheckButton();
         Button check = checkButton.setCheckButton();
-        grid.add(check, 2, 10);
+        grid.add(check, 2, 5);
 
         check.setOnAction((e) -> {
             if(choiceBox.getBallsChoiceBox().getValue() != null && choiceButtons.isGuessIfEven() != null) {

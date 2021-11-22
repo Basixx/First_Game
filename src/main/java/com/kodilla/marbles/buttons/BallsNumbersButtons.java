@@ -8,9 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class BallsNumbersButtons {
-    private final Image bluePanel10 = new Image  ("file:src/main/resources/UI/blue_panel_10.png");
-    private final Image bluePanel15 = new Image  ("file:src/main/resources/UI/blue_panel_15.png");
-    private final Image bluePanel20 = new Image  ("file:src/main/resources/UI/blue_panel_20.png");
+    private final Image bluePanel10 = new Image  ("file:src/main/resources/UI/panel_10.png");
+    private final Image bluePanel15 = new Image  ("file:src/main/resources/UI/panel_15.png");
+    private final Image bluePanel20 = new Image  ("file:src/main/resources/UI/panel_20.png");
 
     private final ImageView panel10 = new ImageView(bluePanel10);
     private final ImageView panel15 = new ImageView(bluePanel15);

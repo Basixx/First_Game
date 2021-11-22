@@ -47,18 +47,24 @@ public class DoublePlayerUI {
         return scene;
     }
 
-   /* public Scene playerBet (Stage primaryStage, String turn){
+   /* public Scene playerBet (Stage primaryStage, String turn, int playerABalls, int playerABallsColor, int playerABet, int playerBBalls, ChoiceBoxUser choiceBox){
         GridPane grid = backgroundSet.setBackGround();
-        Scene scene = showSimpleBetTurn(grid, turn,  player1Balls,
-                player1BallsColor,  choiceBox);
+        Scene scene = showSimpleBetTurn(grid, turn,  playerABalls,
+                playerABallsColor,  choiceBox);
 
         Button endRound = endRoundButton.setEndRoundButton();
+
+        var ref = new Object() {
+            int playerBet = playerABet;
+        };
+
         endRound.setOnAction((e) -> {
             if(choiceBox.getBallsChoiceBox().getValue() != null) {
-                player1Bet = choiceBox.getBallsChoiceBox().getValue();
-                System.out.println(turn + " bet: " + variables.player1Bet);
+                ref.playerBet = choiceBox.getBallsChoiceBox().getValue();
+                System.out.println(turn + " bet: " + ref.playerBet);
 
-                if (variables.player1Balls > 0 && variables.player2Balls > 0) {
+                if (playerABalls > 0 && playerBBalls > 0) {
+                    playerABet = playerBet;
                     primaryStage.setScene(showPlayer2Guess(primaryStage, variables));
 
                 } else {
@@ -74,8 +80,10 @@ public class DoublePlayerUI {
     }*/
 
     public Scene showPlayer1Bet(Stage primaryStage, DoubleRoundVariables variables) {
-        GridPane grid = backgroundSet.setBackGround();
         System.out.println("Player1Turn1 - Bet");
+
+        GridPane grid = backgroundSet.setBackGround();
+
         Scene scene = showSimpleBetTurn(grid, "Player 1 turn",  variables.player1Balls,
                 variables.player1BallsColor,  choiceBoxPlayer1);
 

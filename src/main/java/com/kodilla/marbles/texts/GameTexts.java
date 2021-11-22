@@ -11,11 +11,11 @@ public class GameTexts {
     public Text setMainMenuText(){
         Text mainMenuText = new Text();
         mainMenuText.setText("MAIN MENU");
-        mainMenuText.setFont(Font.font("arial",
+        mainMenuText.setFont(Font.font("Gentium Book Basic",
                 FontWeight.BOLD, FontPosture.ITALIC, 90));
-        mainMenuText.setFill(Color.RED);
-        mainMenuText.setStrokeWidth(5);
-        mainMenuText.setStroke(Color.BLACK);
+        mainMenuText.setFill(Color.LIGHTPINK);
+        mainMenuText.setStrokeWidth(2);
+        mainMenuText.setStroke(Color.NAVY);
         return mainMenuText;
     }
 

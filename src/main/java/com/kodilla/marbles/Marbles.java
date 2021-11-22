@@ -1,6 +1,6 @@
 package com.kodilla.marbles;
 
-import com.kodilla.marbles.game.Game;
+import com.kodilla.marbles.game.ModeChoice;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,10 +12,10 @@ public class Marbles extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
-        Game game = new Game();
-        Scene scene = game.showModeChoice(primaryStage);
+        ModeChoice modeChoice = new ModeChoice();
+        Scene scene = modeChoice.showModeChoice(primaryStage);
         primaryStage.setTitle("Marbles");
         primaryStage.setScene(scene);
         primaryStage.show();

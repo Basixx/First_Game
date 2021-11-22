@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class EndGame {
-    private BackgroundSet backgroundSet = new BackgroundSet();
+    private final BackgroundSet backgroundSet = new BackgroundSet();
 
     public Scene endGameDouble(Stage primaryStage, DoubleRoundVariables variables) {
         GridPane grid = backgroundSet.setBackGround();
@@ -31,8 +31,8 @@ public class EndGame {
 
         Button playAgain = new Button("Play Again");
         playAgain.setOnAction((e) -> {
-            Game game = new Game();
-            primaryStage.setScene(game.showModeChoice(primaryStage));
+            ModeChoice modeChoice = new ModeChoice();
+            primaryStage.setScene(modeChoice.showModeChoice(primaryStage));
         });
         grid.add(playAgain, 0, 4);
 
@@ -59,8 +59,8 @@ public class EndGame {
         Button playAgain = new Button("Play Again");
         playAgain.setOnAction((e) ->
         {
-            Game game = new Game();
-            primaryStage.setScene(game.showModeChoice(primaryStage));
+            ModeChoice modeChoice = new ModeChoice();
+            primaryStage.setScene(modeChoice.showModeChoice(primaryStage));
         } );
         grid.add(playAgain, 0, 4);
 

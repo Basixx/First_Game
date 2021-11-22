@@ -143,7 +143,7 @@ public class MainMenu {
                 doublePlayerUI.variables.player1BallsColor = ballsColorsButtons.getChoiceNumberPlayer1();
                 doublePlayerUI.variables.player2BallsColor = ballsColorsButtons.getChoiceNumberPlayer2();
 
-                primaryStage.setScene(doublePlayerUI.showPlayer1Turn1
+                primaryStage.setScene(doublePlayerUI.showPlayer1Bet
                         (primaryStage, doublePlayerUI.variables));
 
 

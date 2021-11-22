@@ -15,15 +15,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class DoublePlayerUI {
-    private BackgroundSet backgroundSet = new BackgroundSet();
-    private GameTexts gameTexts = new GameTexts();
+    private final BackgroundSet backgroundSet = new BackgroundSet();
+    private final GameTexts gameTexts = new GameTexts();
     private FlowPane pane = new FlowPane(Orientation.HORIZONTAL);
-    private PaneSet paneSet = new PaneSet();
-    private EndGame endGame = new EndGame();
-    private EndRoundButton endRoundButton = new EndRoundButton();
-    private ChoiceButtons choiceButtons = new ChoiceButtons();
-    private ChoiceBoxUser choiceBoxPlayer1 = new ChoiceBoxUser();
-    private ChoiceBoxUser choiceBoxPlayer2 = new ChoiceBoxUser();
+    private final PaneSet paneSet = new PaneSet();
+    private final EndGame endGame = new EndGame();
+    private final EndRoundButton endRoundButton = new EndRoundButton();
+    private final ChoiceButtons choiceButtons = new ChoiceButtons();
+    private final ChoiceBoxUser choiceBoxPlayer1 = new ChoiceBoxUser();
+    private final ChoiceBoxUser choiceBoxPlayer2 = new ChoiceBoxUser();
 
     DoublePlayerGame doublePlayerGame = new DoublePlayerGame();
     DoubleRoundVariables variables = new DoubleRoundVariables();
@@ -47,9 +47,35 @@ public class DoublePlayerUI {
         return scene;
     }
 
-    public Scene showPlayer1Turn1(Stage primaryStage, DoubleRoundVariables variables) {
+   /* public Scene playerBet (Stage primaryStage, String turn){
         GridPane grid = backgroundSet.setBackGround();
+        Scene scene = showSimpleBetTurn(grid, turn,  player1Balls,
+                player1BallsColor,  choiceBox);
 
+        Button endRound = endRoundButton.setEndRoundButton();
+        endRound.setOnAction((e) -> {
+            if(choiceBox.getBallsChoiceBox().getValue() != null) {
+                player1Bet = choiceBox.getBallsChoiceBox().getValue();
+                System.out.println(turn + " bet: " + variables.player1Bet);
+
+                if (variables.player1Balls > 0 && variables.player2Balls > 0) {
+                    primaryStage.setScene(showPlayer2Guess(primaryStage, variables));
+
+                } else {
+                    primaryStage.setScene(endGame.endGameDouble(primaryStage, variables));
+                }
+            } else {
+                grid.add(new Text("make all choices"), 2, 1);
+            }
+        });
+        grid.add(endRound, 1, 1);
+
+        return scene;
+    }*/
+
+    public Scene showPlayer1Bet(Stage primaryStage, DoubleRoundVariables variables) {
+        GridPane grid = backgroundSet.setBackGround();
+        System.out.println("Player1Turn1 - Bet");
         Scene scene = showSimpleBetTurn(grid, "Player 1 turn",  variables.player1Balls,
                 variables.player1BallsColor,  choiceBoxPlayer1);
 
@@ -60,7 +86,7 @@ public class DoublePlayerUI {
                 System.out.println("player1 bet: " + variables.player1Bet);
 
                 if (variables.player1Balls > 0 && variables.player2Balls > 0) {
-                    primaryStage.setScene(showPlayer2Turn1(primaryStage, variables));
+                    primaryStage.setScene(showPlayer2Guess(primaryStage, variables));
 
                 } else {
                     primaryStage.setScene(endGame.endGameDouble(primaryStage, variables));
@@ -74,8 +100,9 @@ public class DoublePlayerUI {
         return scene;
     }
 
-    public Scene showPlayer2Turn2(Stage primaryStage, DoubleRoundVariables variables) {
+    public Scene showPlayer2Bet(Stage primaryStage, DoubleRoundVariables variables) {
         GridPane grid = backgroundSet.setBackGround();
+        System.out.println("Player2Turn2 - bet");
         Scene scene = showSimpleBetTurn(grid, "Player 2 turn", variables.player2Balls,
                 variables.player2BallsColor,  choiceBoxPlayer2);
 
@@ -87,7 +114,7 @@ public class DoublePlayerUI {
                 System.out.println("player2 bet: " + variables.player2Bet);
 
                 if (variables.player1Balls > 0 && variables.player2Balls > 0) {
-                    primaryStage.setScene(showPlayer1Turn2(primaryStage, variables));
+                    primaryStage.setScene(showPlayer1Guess(primaryStage, variables));
                 } else {
                     primaryStage.setScene(endGame.endGameDouble(primaryStage, variables));
                 }
@@ -100,8 +127,9 @@ public class DoublePlayerUI {
         return scene;
     }
 
-    public Scene showPlayer2Turn1(Stage primaryStage, DoubleRoundVariables variables) {
+    public Scene showPlayer2Guess(Stage primaryStage, DoubleRoundVariables variables) {
         GridPane grid = backgroundSet.setBackGround();
+        System.out.println("Player2Turn1 - Guess");
         Scene scene = showSimpleBetTurn(grid, "Player 2 turn",  variables.player2Balls,
                 variables.player2BallsColor,  choiceBoxPlayer2);
 
@@ -114,7 +142,7 @@ public class DoublePlayerUI {
 
                 if (variables.player1Balls > 0 && variables.player2Balls > 0) {
                     roundNr++;
-                    primaryStage.setScene(showPlayer2Turn2(primaryStage, variables));
+                    primaryStage.setScene(showPlayer2Bet(primaryStage, variables));
                 } else {
                     primaryStage.setScene(endGame.endGameDouble(primaryStage, variables));
                 }
@@ -132,8 +160,9 @@ public class DoublePlayerUI {
         return scene;
     }
 
-    public Scene showPlayer1Turn2(Stage primaryStage, DoubleRoundVariables variables) {
+    public Scene showPlayer1Guess(Stage primaryStage, DoubleRoundVariables variables) {
         GridPane grid = backgroundSet.setBackGround();
+        System.out.println("Player1Turn2 - Guess");
         Scene scene = showSimpleBetTurn(grid, "Player 1 turn", variables.player1Balls,
                 variables.player1BallsColor, choiceBoxPlayer1);
 
@@ -146,7 +175,7 @@ public class DoublePlayerUI {
 
                 if (variables.player1Balls > 0 && variables.player2Balls > 0) {
                     roundNr++;
-                    primaryStage.setScene(showPlayer1Turn1(primaryStage, variables));
+                    primaryStage.setScene(showPlayer1Bet(primaryStage, variables));
 
                 } else {
                     primaryStage.setScene(endGame.endGameDouble(primaryStage, variables));

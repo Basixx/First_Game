@@ -6,19 +6,19 @@ import com.kodilla.marbles.auxiliary.DoubleRoundVariables;
 public class DoublePlayerGame {
 
     public void player2Guess(DoubleRoundVariables doubleRoundVariables){
-
+        System.out.println("player2 guess");
         BallsCount ballsCount = playerGuess(doubleRoundVariables.player2Balls, doubleRoundVariables.player1Balls,
                 doubleRoundVariables.player2Bet, doubleRoundVariables.player1Bet, doubleRoundVariables.ifEven);
-        doubleRoundVariables.player1Balls = ballsCount.playerBallsA;
-        doubleRoundVariables.player2Balls = ballsCount.playerBallsB;
+        doubleRoundVariables.player1Balls = ballsCount.playerBallsB;
+        doubleRoundVariables.player2Balls = ballsCount.playerBallsA;
     }
 
     public void  player1Guess(DoubleRoundVariables doubleRoundVariables){
-
+        System.out.println("player1 guess");
         BallsCount ballsCount = playerGuess(doubleRoundVariables.player1Balls, doubleRoundVariables.player2Balls,
                 doubleRoundVariables.player1Bet, doubleRoundVariables.player2Bet, doubleRoundVariables.ifEven);
-        doubleRoundVariables.player1Balls = ballsCount.playerBallsB;
-        doubleRoundVariables.player2Balls = ballsCount.playerBallsA;
+        doubleRoundVariables.player1Balls = ballsCount.playerBallsA;
+        doubleRoundVariables.player2Balls = ballsCount.playerBallsB;
     }
 
     private BallsCount playerGuess(int playerABalls, int playerBBalls, int playerABet, int playerBBet, boolean ifEven){
@@ -41,8 +41,8 @@ public class DoublePlayerGame {
         else{
             System.out.println("PlayerABalls = " + playerABalls);
             System.out.println("PlayerBBalls = " + playerBBalls);
-            playerABalls -= playerABet;
-            playerBBalls += playerABet;
+            playerABalls -= playerBBet;
+            playerBBalls += playerBBet;
         }
 
         System.out.println("po rundzie");
